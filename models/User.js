@@ -6,7 +6,9 @@ const userSchema = new mongoose.Schema({
   AadharNo: { type: String, required: true, trim: true },
   Password: { type: String, required: true, trim: true },
   MobileNo: { type: String, required: true, trim: true },
-  UserType:{type: String,required:true}
+  UserType:{type: String,required:true},
+  FilePath: {type: String},
+  
 })
 
 // Model

@@ -1,0 +1,4 @@
+{
+    "appService.defaultWebAppToDeploy": "/subscriptions/af422f5a-5459-454b-8046-dd5b224c9c39/resourceGroups/API/providers/Microsoft.Web/sites/PudaAPI",
+    "appService.deploySubpath": "."
+}

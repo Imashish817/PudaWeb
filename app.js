@@ -8,13 +8,13 @@ import FileRoutes from './routes/FileAndFormRoutes.js'
 const app = express()
 const port = process.env.PORT
 const DATABASE_URL = process.env.DATABASE_URL
-
+import mongoose from 'mongoose';
 // CORS Policy
 app.use(cors())
 
 // Database Connection
 connectDB(DATABASE_URL)
-
+await mongoose.connect(DATABASE_URL)
 // JSON
 app.use(express.json())
 

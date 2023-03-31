@@ -13,8 +13,7 @@ import mongoose from 'mongoose';
 app.use(cors())
 
 // Database Connection
-connectDB(DATABASE_URL)
-await mongoose.connect(DATABASE_URL)
+ mongoose.connect(DATABASE_URL)
 // JSON
 app.use(express.json())
 

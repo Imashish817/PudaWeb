@@ -13,7 +13,7 @@ import mongoose from 'mongoose';
 app.use(cors())
 
 // Database Connection
- mongoose.connect(DATABASE_URL)
+ mongoose.connect("mongodb+srv://imashishjaiswal99:Ashish%401911@cluster0.diwsjm6.mongodb.net/Puda?retryWrites=true&w=majority")
 // JSON
 app.use(express.json())
 

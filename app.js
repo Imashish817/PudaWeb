@@ -20,7 +20,9 @@ app.use(express.json())
 // Load Routes
 app.use("/api/user", userRoutes)
 app.use("/api/File", FileRoutes)
-
+app.get("/",(req,res)=>{
+  res.send("database url=>", DATABASE_URL,`Server listening at http://localhost:${port}`)
+})
 app.listen(port, () => {
   console.log(`Server listening at http://localhost:${port}`)
 })

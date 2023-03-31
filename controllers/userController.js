@@ -2,7 +2,8 @@ import UserModel from '../models/User.js'
 import bcrypt from 'bcrypt'
 import jwt from 'jsonwebtoken'
 import transporter from '../config/emailConfig.js'
-
+import dotenv from 'dotenv'
+dotenv.config()
 class UserController {
   static userRegistration = async (req, res) => {
     const { Name, MobileNo,AadharNo, Password, Password_Confirmation, tc ,UserType} = req.body

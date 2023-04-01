@@ -4,17 +4,30 @@ const router = express.Router();
 import multer from  'multer'
 import path from 'path'
 import FileAndFormController from '../controllers/FileAndFormController.js';
+// import * as multer from 'multer';
+import { MulterAzureStorage } from 'multer-azure-blob-storage';
 
 import checkUserAuth from '../middlewares/auth-middleware.js';
-const storage = multer.diskStorage({
-            destination: (req,file,cb)=>{
-                cb(null,"./Image");
-            },
-            filename: (req,file,cb) =>{
-                console.log(file);
-                cb(null,Date.now()+ path.extname(file.originalname))
-            },
-        });
+
+const resolveBlobName = (req, file) => {
+    return new Promise((resolve, reject) => {
+        const blobName = Date.now()+ path.extname(file.originalname);
+        resolve(blobName);
+    });
+};
+const azureStorage = new MulterAzureStorage({
+    connectionString: "DefaultEndpointsProtocol=https;AccountName=imagesforpuda;AccountKey=nkEMn1y34Dwm2PT06b2EZOXQw27mf5p5NfOdg5WESL+8E3dAa/1wOMwQYLzTCxoiqriPr4pKLfY1+AStXpiyYg==;EndpointSuffix=core.windows.net",
+    accessKey: "nkEMn1y34Dwm2PT06b2EZOXQw27mf5p5NfOdg5WESL+8E3dAa/1wOMwQYLzTCxoiqriPr4pKLfY1+AStXpiyYg==",
+    accountName: "imagesforpuda",
+    containerName: "documents",
+    blobName: resolveBlobName ,
+    // metadata: resolveMetadata,
+    // contentSettings: resolveContentSettings,
+    containerAccessLevel: 'blob',
+    urlExpirationTime: 60
+   
+});
+
 const  fileFilter =(req, file, cb)=>{
             if(file.mimetype === 'image/png' || file.mimetype === 'image/jpeg' ||file.mimetype === 'image/jpg')
             {
@@ -25,7 +38,7 @@ const  fileFilter =(req, file, cb)=>{
             }
                      
           }
-const upload = multer({ storage:storage ,limits: {
+const upload = multer({ storage:azureStorage ,limits: {
     fieldSize: 1024*1025*5},
     fileFilter: fileFilter,
  })

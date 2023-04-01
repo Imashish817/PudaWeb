@@ -15,14 +15,15 @@ const resolveBlobName = (req, file) => {
         resolve(blobName);
     });
 };
+
+const accountName=process.env.AZURE_ACCOUNT_NAME;
+const accessKey=process.env.AZURE_ACCESS_KEY
 const azureStorage = new MulterAzureStorage({
-    connectionString: "DefaultEndpointsProtocol=https;AccountName=imagesforpuda;AccountKey=nkEMn1y34Dwm2PT06b2EZOXQw27mf5p5NfOdg5WESL+8E3dAa/1wOMwQYLzTCxoiqriPr4pKLfY1+AStXpiyYg==;EndpointSuffix=core.windows.net",
+    connectionString:`DefaultEndpointsProtocol=https;AccountName=${accountName};AccountKey=${accessKey};EndpointSuffix=core.windows.net`,
     accessKey: "nkEMn1y34Dwm2PT06b2EZOXQw27mf5p5NfOdg5WESL+8E3dAa/1wOMwQYLzTCxoiqriPr4pKLfY1+AStXpiyYg==",
     accountName: "imagesforpuda",
     containerName: "documents",
     blobName: resolveBlobName ,
-    // metadata: resolveMetadata,
-    // contentSettings: resolveContentSettings,
     containerAccessLevel: 'blob',
     urlExpirationTime: 60
    

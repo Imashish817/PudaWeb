@@ -17,12 +17,14 @@ const resolveBlobName = (req, file) => {
 };
 
 const accountName=process.env.AZURE_ACCOUNT_NAME;
-const accessKey=process.env.AZURE_ACCESS_KEY
+const accessKey=process.env.AZURE_ACCESS_KEY;
+const accountname=process.env.AZURE_ACCOUNT_NAME;
+const containerName=process.env.AZURE_CONTAINER_NAME;
 const azureStorage = new MulterAzureStorage({
     connectionString:`DefaultEndpointsProtocol=https;AccountName=${accountName};AccountKey=${accessKey};EndpointSuffix=core.windows.net`,
-    accessKey: "nkEMn1y34Dwm2PT06b2EZOXQw27mf5p5NfOdg5WESL+8E3dAa/1wOMwQYLzTCxoiqriPr4pKLfY1+AStXpiyYg==",
-    accountName: "imagesforpuda",
-    containerName: "documents",
+    accessKey: accessKey,
+    accountName: accountname,
+    containerName: containerName,
     blobName: resolveBlobName ,
     containerAccessLevel: 'blob',
     urlExpirationTime: 60
@@ -36,8 +38,7 @@ const  fileFilter =(req, file, cb)=>{
             }
             else{
                 cb(null, false)
-            }
-                     
+            }       
           }
 const upload = multer({ storage:azureStorage ,limits: {
     fieldSize: 1024*1025*5},

@@ -27,7 +27,7 @@ class UserController {
             await doc.save()
             const saved_user = await UserModel.findOne({ AadharNo: AadharNo })
             // Generate JWT Token
-            const token = jwt.sign({ userID: saved_user._id }, "dhsjf3423jhsdf3423df", { expiresIn: '5d' })
+            const token = jwt.sign({ userID: saved_user._id }, process.env.JWT_SECRET_KEY, { expiresIn: '5d' })
             res.status(201).send({ "status": "success", "message": "Registration Success", "token": token })
           } catch (error) {
             console.log(error)
@@ -51,7 +51,7 @@ class UserController {
           const isMatch = await bcrypt.compare(Password, user.Password)
           if ((user.AadharNo === AadharNo && user.MobileNo ===MobileNo) && isMatch) {
             // Generate JWT Token
-            const token = jwt.sign({ userID: user._id }, "dhsjf3423jhsdf3423df", { expiresIn: '5d' })
+            const token = jwt.sign({ userID: user._id }, process.env.JWT_SECRET_KEY, { expiresIn: '5d' })
             res.status(200).send({ "status": "success", "message": "Login Success", "token": token, "Name": user.Name, "AadharNo": user.AadharNo, "MobileNo": user.MobileNo, "UserType":user.UserType })
           } else {
             res.status(401).send({ "status": "Unauthorized", "message": "Email, Mobile No, Password is not Valid" })

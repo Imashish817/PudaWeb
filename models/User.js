@@ -8,7 +8,7 @@ const userSchema = new mongoose.Schema({
   MobileNo: { type: String, required: true, trim: true },
   UserType:{type: String,required:true},
   FilePath: {type: String},
-  
+  URLPath: {type: String},
 })
 
 // Model

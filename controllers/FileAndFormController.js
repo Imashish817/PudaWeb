@@ -10,7 +10,7 @@ class FileAndFromController{
             console.log(req.file);
             console.log(req.user);
             //update in DB with file name;
-            await UserModel.findByIdAndUpdate(req.user._id, { $set: { FilePath: req.file.filename } })
+            await UserModel.findByIdAndUpdate(req.user._id, { $set: { FilePath: req.file.blobName,URLPath:req.file.url } })
             res.status(200).send({ "status": "Success", "message": "Upload is Completed" });
         }
         

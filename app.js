@@ -12,8 +12,8 @@ const DATABASE_URL = process.env.DATABASE_URL
 import mongoose from 'mongoose';
 // CORS Policy
 app.use(cors())
-connectDB(DATABASE_URL)
-
+// connectDB(DATABASE_URL)
+mongoose.connect("mongodb+srv://imashishjaiswal99:Ashish%401911@cluster0.diwsjm6.mongodb.net/Puda?retryWrites=true&w=majority")
 // JSON
 app.use(express.json())
 

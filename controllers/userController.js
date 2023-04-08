@@ -52,7 +52,7 @@ class UserController {
           if ((user.AadharNo === AadharNo && user.MobileNo ===MobileNo) && isMatch) {
             // Generate JWT Token
             const token = jwt.sign({ userID: user._id }, process.env.JWT_SECRET_KEY, { expiresIn: '5d' })
-            res.status(200).send({ "status": "success", "message": "Login Success", "token": token, "Name": user.Name, "AadharNo": user.AadharNo, "MobileNo": user.MobileNo, "UserType":user.UserType, "SignedApplication":user.FilePath, "SignedDoc":user.URLPath })
+            res.status(200).send({ "status": "success", "message": "Login Success", "token": token, "Name": user.Name, "AadharNo": user.AadharNo, "MobileNo": user.MobileNo, "UserType":user.UserType, Files: user.Files })
           } else {
             res.status(401).send({ "status": "Unauthorized", "message": "Email, Mobile No, Password is not Valid" })
           }

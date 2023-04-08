@@ -7,8 +7,16 @@ const userSchema = new mongoose.Schema({
   Password: { type: String, required: true, trim: true },
   MobileNo: { type: String, required: true, trim: true },
   UserType:{type: String,required:true},
-  FilePath: {type: String},
-  URLPath: {type: String},
+  Files:[
+    {
+      FileNo: String,
+      SignedAplication: String,
+      ApplicationsForm1: String,
+      ApplicationsForm2: String,
+      ApplicationsForm3: String,
+      IsAproved: Boolean,
+    }
+  ]
 })
 
 // Model

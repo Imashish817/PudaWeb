@@ -14,7 +14,7 @@ const userSchema = new mongoose.Schema({
       ApplicationsForm1: String,
       ApplicationsForm2: String,
       ApplicationsForm3: String,
-      IsAproved: Boolean,
+      IsAproved: String,
     }
   ]
 })

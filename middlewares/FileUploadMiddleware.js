@@ -34,8 +34,21 @@ const  fileFilter =(req, file, cb)=>{
           }
 
 const upload = multer({ storage:azureStorage ,limits: {
-    fieldSize: 1024*1025*5},
+    fieldSize: 1024*1025*2},
     fileFilter: fileFilter,
- })
+ }).fields(
+  [
+      {
+          name:'WrittenApplication',
+          maxCount:1
+      },
+      {
+          name: 'ApplicationsForm1', maxCount:1
+      },
+      {
+          name: 'ApplicationsForm2', maxCount:1
+      }
+  ]
+);
 
 export default upload;

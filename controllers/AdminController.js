@@ -7,7 +7,7 @@ class AdminController{
         let result=[];
         if(req.user.UserType === "Admin")
         {
-            const a=await UserModel.find({"Files.IsAproved":false  ,UserType:"Normal" })
+            const a=await UserModel.find({"Files.IsAproved":"1"  ,UserType:"Normal" })
             console.log(a);
             a.forEach(user => {
                 let userObj={

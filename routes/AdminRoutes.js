@@ -3,7 +3,12 @@ import AdminController from '../controllers/AdminController.js';
 const router = express.Router();
 import checkUserAuth from '../middlewares/auth-middleware.js';
 
-router.use('/GetUnverifiedUsers',checkUserAuth);
-router.get('/GetUnverifiedUsers',AdminController.GetUnverifiedUsers)
+router.use('/GetUnverifiedUsersForOps',checkUserAuth);
+router.get('/GetUnverifiedUsersForOps',AdminController.GetUnverifiedUsersForOps)
 
+router.use('/GetUnverifiedUsersForCon',checkUserAuth);
+router.get('/GetUnverifiedUsersForCon',AdminController.GetUnverifiedUsersForCon)
+
+router.use('/GetUnverifiedUsersForPat',checkUserAuth);
+router.get('/GetUnverifiedUsersForPat',AdminController.GetUnverifiedUsersForPat)
 export default router

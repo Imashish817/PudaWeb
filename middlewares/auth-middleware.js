@@ -14,7 +14,9 @@ var checkUserAuth = async (req, res, next) => {
 
       // Get User from Token
       req.user = await UserModel.findById(userID).select('-password')
-
+      if(!req.user){
+        res.status(401).send({ "status": "failed", "message": "Unauthorized User" })
+      }
       next()
     } catch (error) {
       console.log(error)

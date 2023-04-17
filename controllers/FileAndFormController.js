@@ -22,7 +22,7 @@ class FileAndFromController{
             }
             //update in DB with file name;
             await UserModel.findByIdAndUpdate(req.user._id, { $push: { Files:file  } })
-            res.status(200).send({ "status": "Success", "message": "Upload is Completed and a new file is created ","file No: " :file.FileNo });
+            res.status(200).send({ "status": "Success", "message": "Upload is Completed and a new file is created with File No"+ file.FileNo,"file No:" :file.FileNo });
         }
     }
 

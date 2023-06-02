@@ -18,8 +18,11 @@ class AdminController{
                     console.log(File)
                     if(File.IsAproved ==='1')
                     {
-                        let oneFile= {"Name":Name,"AadharNo":AadharNo,"MobileNo":MobileNo,...File._doc}
+                        console.log(File._doc)
+                        const URLPaths=[File?.SignedAplication,File?.ApplicationsForm1,File?.ApplicationsForm2,File?.ApplicationsForm3,File?.ApplicationsForm4]
+                        let oneFile= {"Name":Name,"AadharNo":AadharNo,"MobileNo":MobileNo,URLPaths}
                         Files.push(oneFile);
+                        console.log(oneFile)
                     }
                 });
                 

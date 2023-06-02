@@ -11,4 +11,7 @@ router.get('/GetUnverifiedUsersForCon',AdminController.GetUnverifiedUsersForCon)
 
 router.use('/GetUnverifiedUsersForPat',checkUserAuth);
 router.get('/GetUnverifiedUsersForPat',AdminController.GetUnverifiedUsersForPat)
+
+router.use('/GetUnverifiedUsersForAcc',checkUserAuth);
+router.get('/GetUnverifiedUsersForAcc',AdminController.GetUnverifiedUsersForAcc)
 export default router

@@ -30,7 +30,7 @@ class AdminController{
             res.status(200).send({"data":Files})
         }
         else{
-            res.status(401).send({ "status": "Failed", "message": "Insufficient Permissions" });
+            res.status(401).send({ "status": "Failed", "message": "Insufficient Permissions." });
         }
     }
 

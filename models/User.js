@@ -15,6 +15,11 @@ const userSchema = new mongoose.Schema({
       ApplicationsForm2: String,
       ApplicationsForm3: String,
       IsAproved: String,
+      ApprovedByops:String,
+      ApprovedBycon:String,
+      ApprovedByacc:String,
+      ApprovedBypat:String,
+      AppointmentDate:String,
     }
   ]
 })

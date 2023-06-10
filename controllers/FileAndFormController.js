@@ -16,6 +16,10 @@ class FileAndFromController{
                 ApplicationsForm1: baseUrl+req.files.ApplicationsForm1[0].blobName,
                 ApplicationsForm2: baseUrl+req.files.ApplicationsForm2[0].blobName,
                 IsAproved: "1",
+                ApprovedByops:"false",
+                ApprovedBycon:"false",
+                ApprovedByacc:"false",
+                ApprovedBypat:"false",
                 //IsAproved=1 --> underprogress
                 //IsAproved=0 --> approved
                 //IsAproved=2 --> rejected  

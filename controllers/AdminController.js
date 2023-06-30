@@ -1,4 +1,3 @@
-
 import UserModel from '../models/User.js'
 class AdminController{
 
@@ -165,12 +164,13 @@ class AdminController{
             console.log(a);
             res.status(200).send({ "status": "Success", "message": "Approved by patwari" });
         }
-        else if(req.user.UserType===5)
+        //bug
+        else if(req.user.UserType==="5")
         {
             console.log(req.body);
             const a=await UserModel.updateOne(
-                { "Files.FileNo": req.body.FileNo },{"AadharNo": req.body.Aadharno}, 
-                { "$set": { "Files.$.IsAproved": "true" } }
+                { "Files.FileNo": req.body.FileNo }, 
+                { "$set": { "Files.$.ApprovedByacc": "true" } }
             )
             console.log(a);
             res.status(200).send({ "status": "Success", "message": "Approved by Accounts team" });
@@ -181,7 +181,6 @@ class AdminController{
         }
 
     }
-
     static SendtoPatwari=async(req, res)=>{
         if(req.user.UserType==="3")
         {
@@ -194,8 +193,6 @@ class AdminController{
                 { "Files.FileNo": req.body.FileNo },
                 { "$set": { "Files.$.ApprovedByacc": "not required" } }
             )
-            console.log(a);
-            console.log(aa);
             res.status(200).send({ "status": "Success", "message": "file passed to patwari" });
         }
         else{
@@ -209,11 +206,18 @@ class AdminController{
         {
             console.log(req.body);
             const a=await UserModel.updateOne(
-                { "Files.FileNo": req.body.FileNo },{"AadharNo": req.body.Aadharno}, 
+                { "Files.FileNo": req.body.FileNo }, 
+                { "$set": { "Files.$.ApprovedBycon": "true" } }
+            )
+            const aa=await UserModel.updateOne(
+                { "Files.FileNo": req.body.FileNo },
                 { "$set": { "Files.$.ApprovedBypat": "not required" } }
             )
             console.log(a);
             res.status(200).send({ "status": "Success", "message": "file passed to accounts" });
+        }
+        else{
+            res.status(401).send({ "status": "failed", "message": req.user.UserType });
         }
 
     }

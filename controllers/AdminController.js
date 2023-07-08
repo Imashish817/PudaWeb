@@ -20,7 +20,7 @@ class AdminController{
                     {
                         let FileNo= File.FileNo;
                         console.log(File._doc)
-                        const URLPaths=[File?.SignedAplication,File?.ApplicationsForm1,File?.ApplicationsForm2,File?.ApplicationsForm3,File?.ApplicationsForm4]
+                        const URLPaths=[File?.SignedAplication,File?.ApplicationsForm1,File?.ApplicationsForm2,File?.ApplicationsForm3].flat(1);
                         let oneFile= {"Name":Name,"AadharNo":AadharNo,"FileNo":FileNo,"MobileNo":MobileNo,URLPaths}
                         Files.push(oneFile);
                         console.log(oneFile)
@@ -53,7 +53,7 @@ class AdminController{
                     let FileNo= File.FileNo;
                     if(File.ApprovedBycon ==="false" && File.ApprovedByops==="true" )
                     {
-                        const URLPaths=[File?.SignedAplication,File?.ApplicationsForm1,File?.ApplicationsForm2,File?.ApplicationsForm3,File?.ApplicationsForm4]
+                        const URLPaths=[File?.SignedAplication,File?.ApplicationsForm1,File?.ApplicationsForm2,File?.ApplicationsForm3].flat(1);
                         let oneFile= {"Name":Name,"AadharNo":AadharNo,"FileNo":FileNo,"MobileNo":MobileNo,URLPaths}
                         Files.push(oneFile);
                     }
@@ -86,7 +86,7 @@ class AdminController{
                     let FileNo= File.FileNo;
                     if(File.ApprovedBycon ==="true" && File.ApprovedByops==="true" && File.ApprovedBypat==="false")
                     {
-                        const URLPaths=[File?.SignedAplication,File?.ApplicationsForm1,File?.ApplicationsForm2,File?.ApplicationsForm3,File?.ApplicationsForm4]
+                        const URLPaths=[File?.SignedAplication,File?.ApplicationsForm1,File?.ApplicationsForm2,File?.ApplicationsForm3].flat(1);
                         let oneFile= {"Name":Name,"AadharNo":AadharNo,"FileNo":FileNo,"MobileNo":MobileNo,URLPaths}
                         Files.push(oneFile);
                     }
@@ -117,7 +117,7 @@ class AdminController{
                     let FileNo= File.FileNo;
                     if(File.ApprovedBycon ==="true" && File.ApprovedByops==="true" && File.ApprovedByacc==="false")
                     {
-                        const URLPaths=[File?.SignedAplication,File?.ApplicationsForm1,File?.ApplicationsForm2,File?.ApplicationsForm3,File?.ApplicationsForm4]
+                        const URLPaths=[File?.SignedAplication,File?.ApplicationsForm1,File?.ApplicationsForm2,File?.ApplicationsForm3].flat(1);
                         let oneFile= {"Name":Name,"AadharNo":AadharNo,"FileNo":FileNo,"MobileNo":MobileNo,URLPaths}
                         Files.push(oneFile);
                     }
@@ -243,7 +243,7 @@ class AdminController{
                     let FileNo= File.FileNo;
                     if((File.ApprovedBycon ==="true" && File.ApprovedByops==="true") && (File.ApprovedByacc==="true" ||File.ApprovedByacc==="not required") && (File.ApprovedBypat==="true" ||File.ApprovedBypat==="not required"))
                     {
-                        const URLPaths=[File?.SignedAplication,File?.ApplicationsForm1,File?.ApplicationsForm2,File?.ApplicationsForm3,File?.ApplicationsForm4]
+                        const URLPaths=[File?.SignedAplication,File?.ApplicationsForm1,File?.ApplicationsForm2,File?.ApplicationsForm3].flat(1);
                         let oneFile= {"Name":Name,"AadharNo":AadharNo,"FileNo":FileNo,"MobileNo":MobileNo,URLPaths,"breakuprow1":File?.breakuprow1,"breakuprow2":File?.breakuprow2,"breakuprow3":File?.breakuprow3}
                         Files.push(oneFile);
                         console.log(oneFile)

@@ -10,10 +10,10 @@ const userSchema = new mongoose.Schema({
   Files:[
     {
       FileNo: String,
-      SignedAplication: String,
-      ApplicationsForm1: String,
-      ApplicationsForm2: String,
-      ApplicationsForm3: String,
+      SignedAplication: [String],
+      ApplicationsForm1: [String],
+      ApplicationsForm2: [String],
+      ApplicationsForm3: [String],
       IsAproved: String,
       ApprovedByops:String,
       ApprovedBycon:String,

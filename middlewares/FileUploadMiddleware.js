@@ -24,6 +24,7 @@ const containerName=process.env.AZURE_CONTAINER_NAME;
 });
 
 const  fileFilter =(req, file, cb)=>{
+        console.log(file);
             if(file.mimetype === 'image/png' || file.mimetype === 'image/jpeg' ||file.mimetype === 'image/jpg' ||file.mimetype === 'application/pdf')
             {
                 cb(null, true)
@@ -40,14 +41,17 @@ const upload = multer({ storage:azureStorage ,limits: {
   [
       {
           name:'WrittenApplication',
-          maxCount:1
+          maxCount:100
       },
       {
-          name: 'ApplicationsForm1', maxCount:1
+          name: 'ApplicationsForm1', maxCount:100
       },
       {
-          name: 'ApplicationsForm2', maxCount:1
-      }
+          name: 'ApplicationsForm2', maxCount:100
+      },
+      {
+        name: 'ApplicationsForm3', maxCount:100
+    }
   ]
 );
 

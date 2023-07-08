@@ -20,6 +20,9 @@ const userSchema = new mongoose.Schema({
       ApprovedByacc:String,
       ApprovedBypat:String,
       AppointmentDate:String,
+      breakuprow1: [String],
+      breakuprow2: [String],
+      breakuprow3: [String]
     }
   ]
 })

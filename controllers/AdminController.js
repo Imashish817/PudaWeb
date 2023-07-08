@@ -159,7 +159,11 @@ class AdminController{
             console.log(req.body);
             const a=await UserModel.updateOne(
                 { "Files.FileNo": req.body.FileNo },
-                { "$set": { "Files.$.ApprovedBypat": "true" } }
+                { "$set": { "Files.$.ApprovedBypat": "true" ,
+                "Files.$.breakuprow1":req.body.breakuprow1,
+                "Files.$.breakuprow2":req.body.breakuprow2,
+                "Files.$.breakuprow3":req.body.breakuprow3,
+            }}
             )
             console.log(a);
             res.status(200).send({ "status": "Success", "message": "Approved by patwari" });
@@ -222,7 +226,7 @@ class AdminController{
 
     }
 
-    static UserstoBookAppointment=async(req, res)=>{
+        static UserstoBookAppointment=async(req, res)=>{
        
             //search for files where ApprovedByops,ApprovedBycon,ApprovedBypat,ApprovedByAcc are true of not required
             if(req.user.UserType === "2")
@@ -240,8 +244,9 @@ class AdminController{
                     if((File.ApprovedBycon ==="true" && File.ApprovedByops==="true") && (File.ApprovedByacc==="true" ||File.ApprovedByacc==="not required") && (File.ApprovedBypat==="true" ||File.ApprovedBypat==="not required"))
                     {
                         const URLPaths=[File?.SignedAplication,File?.ApplicationsForm1,File?.ApplicationsForm2,File?.ApplicationsForm3,File?.ApplicationsForm4]
-                        let oneFile= {"Name":Name,"AadharNo":AadharNo,"FileNo":FileNo,"MobileNo":MobileNo,URLPaths}
+                        let oneFile= {"Name":Name,"AadharNo":AadharNo,"FileNo":FileNo,"MobileNo":MobileNo,URLPaths,"breakuprow1":File?.breakuprow1,"breakuprow2":File?.breakuprow2,"breakuprow3":File?.breakuprow3}
                         Files.push(oneFile);
+                        console.log(oneFile)
                     }
                 });
                 
@@ -267,37 +272,37 @@ class AdminController{
         }
 
         }
-        static UserstoBookAppointment=async(req, res)=>{
+        // static UserstoBookAppointment=async(req, res)=>{
        
-            //search for files where ApprovedByops,ApprovedBycon,ApprovedBypat,ApprovedByAcc are true of not required
-            if(req.user.UserType === "2")
-        {
-            const a=await UserModel.find({"$and":[{"Files.ApprovedByops":"true"},{"Files.ApprovedBycon":"true"}],UserType: "1"}) .select('-Password')
-            console.log(a);
-            const Files=[];
-            a.forEach((user)=>{
-                let Name= user.Name;
-                let AadharNo= user.AadharNo;
-                let MobileNo= user.MobileNo;
-                user.Files.forEach((File)=>{
-                    console.log(File)
-                    let FileNo= File.FileNo;
-                    if((File.ApprovedBycon ==="true" && File.ApprovedByops==="true") && (File.ApprovedByacc==="true" ||File.ApprovedByacc==="not required") && (File.ApprovedBypat==="true" ||File.ApprovedBypat==="not required"))
-                    {
-                        const URLPaths=[File?.SignedAplication,File?.ApplicationsForm1,File?.ApplicationsForm2,File?.ApplicationsForm3,File?.ApplicationsForm4]
-                        let oneFile= {"Name":Name,"AadharNo":AadharNo,"FileNo":FileNo,"MobileNo":MobileNo,URLPaths}
-                        Files.push(oneFile);
-                    }
-                });
+        //     //search for files where ApprovedByops,ApprovedBycon,ApprovedBypat,ApprovedByAcc are true of not required
+        //     if(req.user.UserType === "2")
+        // {
+        //     const a=await UserModel.find({"$and":[{"Files.ApprovedByops":"true"},{"Files.ApprovedBycon":"true"}],UserType: "1"}) .select('-Password')
+        //     console.log(a);
+        //     const Files=[];
+        //     a.forEach((user)=>{
+        //         let Name= user.Name;
+        //         let AadharNo= user.AadharNo;
+        //         let MobileNo= user.MobileNo;
+        //         user.Files.forEach((File)=>{
+        //             console.log(File)
+        //             let FileNo= File.FileNo;
+        //             if((File.ApprovedBycon ==="true" && File.ApprovedByops==="true") && (File.ApprovedByacc==="true" ||File.ApprovedByacc==="not required") && (File.ApprovedBypat==="true" ||File.ApprovedBypat==="not required") && File?.AppointmentDate === null)
+        //             {
+        //                 const URLPaths=[File?.SignedAplication,File?.ApplicationsForm1,File?.ApplicationsForm2,File?.ApplicationsForm3,File?.ApplicationsForm4]
+        //                 let oneFile= {"Name":Name,"AadharNo":AadharNo,"FileNo":FileNo,"MobileNo":MobileNo,URLPaths}
+        //                 Files.push(oneFile);
+        //             }
+        //         });
                 
-            })
-            res.status(200).send({"data":Files})
-        }
-           else{
-            res.status(401).send({ "status": "Failed", "message": "Insufficient Permissions" });
-           }
+        //     })
+        //     res.status(200).send({"data":Files})
+        // }
+        //    else{
+        //     res.status(401).send({ "status": "Failed", "message": "Insufficient Permissions" });
+        //    }
            
-        }
+        // }
 
         static RejectFile=async(req, res)=>{
         console.log(req.query);

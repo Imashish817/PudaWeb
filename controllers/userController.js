@@ -8,7 +8,7 @@ class UserController {
   static userRegistration = async (req, res) => {
     const { Name, MobileNo,AadharNo, Password, Password_Confirmation, tc ,UserType} = req.body
     const user = await UserModel.findOne({ AadharNo: AadharNo })
-    console.log(user)
+    //console.log(user)
     if (user) {
       res.status(403).send({ "status": "failed", "message": "Aadhar No already exists" })
     } else {
@@ -30,7 +30,7 @@ class UserController {
             const token = jwt.sign({ userID: saved_user._id }, process.env.JWT_SECRET_KEY, { expiresIn: '1d' })
             res.status(201).send({ "status": "success", "message": "Registration Success", "token": token })
           } catch (error) {
-            console.log(error)
+            //console.log(error)
             res.status(500).send({ "status": "failed", "message": "Unable to Register" })
           }
         } else {
@@ -63,7 +63,7 @@ class UserController {
         res.status(401).send({ "status": "failed", "message": "All Fields are Required" })
       }
     } catch (error) {
-      console.log(error)
+      //console.log(error)
       res.status(500).send({ "status": "failed", "message": "Unable to Login" })
     }
   }
@@ -82,7 +82,7 @@ class UserController {
   //       const secret = user._id + process.env.JWT_SECRET_KEY
   //       const token = jwt.sign({ userID: user._id }, secret, { expiresIn: '15m' })
   //       const link = `http://127.0.0.1:3000/api/user/reset/${user._id}/${token}`
-  //       console.log(link)
+  //       //console.log(link)
   //       // // Send Email
   //       // let info = await transporter.sendMail({
   //       //   from: process.env.EMAIL_FROM,
@@ -119,7 +119,7 @@ class UserController {
   //       res.send({ "status": "failed", "message": "All Fields are Required" })
   //     }
   //   } catch (error) {
-  //     console.log(error)
+  //     //console.log(error)
   //     res.send({ "status": "failed", "message": "Invalid Token" })
   //   }
   // }

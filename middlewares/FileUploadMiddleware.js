@@ -24,7 +24,7 @@ const containerName=process.env.AZURE_CONTAINER_NAME;
 });
 
 const  fileFilter =(req, file, cb)=>{
-        console.log(file);
+        //console.log(file);
             if(file.mimetype === 'image/png' || file.mimetype === 'image/jpeg' ||file.mimetype === 'image/jpg' ||file.mimetype === 'application/pdf')
             {
                 cb(null, true)

@@ -8,7 +8,7 @@ class FileAndFromController{
             res.status(400).send({ "status": "failed", "message": "Image is Inapporiate" })
         }
         else{
-            console.log(req.files);
+            //console.log(req.files);
            
             let ApplicationsForm1=[];
             let ApplicationsForm2=[];
